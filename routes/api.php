@@ -16,10 +16,9 @@ use App\Http\Controllers\CompanyController;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
-Route::get('token', [\App\Http\Controllers\AuthController::class, 'getToken']);
+//Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//    return $request->user();
+//});
 Route::post('contact', [ContactController::class, 'create']);
 Route::post('contract', [ContractController::class, 'create']);
 Route::post('company', [CompanyController::class, 'create']);

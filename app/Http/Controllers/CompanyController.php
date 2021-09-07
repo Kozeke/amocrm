@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Repository\CompanyRepositoryInterface;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 
@@ -15,12 +16,12 @@ class CompanyController extends Controller
         $this->companyRepository = $companyRepository;
     }
 
-    public function create(Request $request): array
+    public function create(Request $request): JsonResponse
     {
-        $response = $this->companyRepository->getToken();
-        $token = $response['access_token'];
-        $url = $response['base_domain'];
-        $obj = $this->companyRepository->create($token, $url, $request);
-        return $obj["_embedded"]["companies"];
+        $token_obj = $this->companyRepository->getToken();
+        $token = $token_obj['access_token'];
+        $url = $token_obj['base_domain'];
+        return $this->companyRepository->create($token, $url, $request);
+
     }
 }

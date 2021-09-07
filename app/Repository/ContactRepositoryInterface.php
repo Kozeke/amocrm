@@ -2,6 +2,8 @@
 namespace App\Repository;
 
 
+use Illuminate\Http\JsonResponse;
+
 interface ContactRepositoryInterface
 {
     /**
@@ -10,5 +12,5 @@ interface ContactRepositoryInterface
      * @param $request
      * @return array
      */
-    public function create(string $token, string $url, $request): array;
+    public function create(string $token, string $url, $request): JsonResponse;
 }

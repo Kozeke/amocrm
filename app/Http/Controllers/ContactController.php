@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Repository\ContactRepositoryInterface;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 
@@ -15,12 +16,11 @@ class ContactController extends Controller
         $this->contactRepository = $contactRepository;
     }
 
-    public function create(Request $request): array
+    public function create(Request $request): JsonResponse
     {
         $response = $this->contactRepository->getToken();
         $token = $response['access_token'];
         $url = $response['base_domain'];
-        $obj = $this->contactRepository->create($token, $url, $request);
-        return $obj["_embedded"]["contacts"];
+        return $this->contactRepository->create($token, $url, $request);
     }
 }
